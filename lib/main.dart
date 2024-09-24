@@ -2,9 +2,13 @@ import 'package:demoapp/home_screen.dart';
 import 'package:demoapp/images.dart';
 import 'package:demoapp/login_screen.dart';
 import 'package:demoapp/my_cm.dart';
+import 'package:demoapp/purchase_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 void main() {
+  Get.lazyPut(()=>PurchaseRepository());
   runApp(MyApp());
 }
 

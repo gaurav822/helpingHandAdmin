@@ -33,7 +33,7 @@ class PurchaseWithService {
   final DateTime createdAt;
   final DateTime updatedAt;
   final int v;
-  final List<Service> services;
+  final List<dynamic> services;
 
   PurchaseWithService({
     required this.id,
@@ -56,7 +56,7 @@ class PurchaseWithService {
     createdAt: DateTime.parse(json["createdAt"]),
     updatedAt: DateTime.parse(json["updatedAt"]),
     v: json["__v"],
-    services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
+    services: List<dynamic>.from(json["services"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -68,7 +68,7 @@ class PurchaseWithService {
     "createdAt": createdAt.toIso8601String(),
     "updatedAt": updatedAt.toIso8601String(),
     "__v": v,
-    "services": List<dynamic>.from(services.map((x) => x.toJson())),
+    "services": List<dynamic>.from(services.map((x) => x)),
   };
 }
 
@@ -112,66 +112,17 @@ class ServiceType {
   };
 }
 
-class Service {
-  final String id;
-  final String studentId;
-  final String serviceTypeId;
-  final String purchaseId;
-  final String status;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final int v;
-
-  Service({
-    required this.id,
-    required this.studentId,
-    required this.serviceTypeId,
-    required this.purchaseId,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
-  });
-
-  factory Service.fromJson(Map<String, dynamic> json) => Service(
-    id: json["_id"],
-    studentId: json["studentId"],
-    serviceTypeId: json["serviceTypeId"],
-    purchaseId: json["purchaseId"],
-    status: json["status"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    v: json["__v"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "_id": id,
-    "studentId": studentId,
-    "serviceTypeId": serviceTypeId,
-    "purchaseId": purchaseId,
-    "status": status,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "__v": v,
-  };
-}
-
 class StudentId {
   final String id;
   final String email;
   final String password;
   final bool isVerified;
-  final String emailToken;
+  final dynamic emailToken;
   final String firstname;
   final String lastname;
   final String userType;
   final bool isAdmin;
   final String t;
-  final String school;
-  final String schoolEmail;
-  final String nationality;
-  final String phoneNumber;
-  final String address;
   final DateTime createdAt;
   final DateTime updatedAt;
   final int v;
@@ -187,11 +138,6 @@ class StudentId {
     required this.userType,
     required this.isAdmin,
     required this.t,
-    required this.school,
-    required this.schoolEmail,
-    required this.nationality,
-    required this.phoneNumber,
-    required this.address,
     required this.createdAt,
     required this.updatedAt,
     required this.v,
@@ -208,11 +154,6 @@ class StudentId {
     userType: json["userType"],
     isAdmin: json["isAdmin"],
     t: json["__t"],
-    school: json["school"],
-    schoolEmail: json["schoolEmail"],
-    nationality: json["nationality"],
-    phoneNumber: json["phoneNumber"],
-    address: json["address"],
     createdAt: DateTime.parse(json["createdAt"]),
     updatedAt: DateTime.parse(json["updatedAt"]),
     v: json["__v"],
@@ -229,11 +170,6 @@ class StudentId {
     "userType": userType,
     "isAdmin": isAdmin,
     "__t": t,
-    "school": school,
-    "schoolEmail": schoolEmail,
-    "nationality": nationality,
-    "phoneNumber": phoneNumber,
-    "address": address,
     "createdAt": createdAt.toIso8601String(),
     "updatedAt": updatedAt.toIso8601String(),
     "__v": v,

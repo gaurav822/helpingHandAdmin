@@ -1,6 +1,8 @@
 import 'package:demoapp/payment_list_controller.dart';
+import 'package:demoapp/purchase_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class PaymentListScreen extends StatefulWidget {
@@ -15,7 +17,7 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = PaymentListController();
+    final controller = Get.put(PaymentListController());
     return Obx(() {
       if (controller.isLoading.value) {
         return const Center(
@@ -37,7 +39,11 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
                   // Find the purchase status for each service
                   return Container(
                     margin: const EdgeInsets.only(bottom: 20),
-                    child: Column()
+                    child: PurchaseCard(purchase: service, onConfirm: (){
+                      print("confirm clicked");
+                      controller.confirmPay(service.id);
+                    },)
+
                   );
                 }).toList(),
               ),
