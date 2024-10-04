@@ -136,7 +136,11 @@ class _JobsScreenState extends State<JobsScreen> {
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
                               children: [
-
+                                Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(bottom: 10),
+                                      child: Image.asset("assets/image/in_progress.png", height: 70,),
+                                    )),
                                 Center(
                                     child: Padding(
                                       padding: EdgeInsets.all(10),

@@ -124,7 +124,11 @@ class _AccommodationScreenState extends State<AccommodationScreen> {
                               child: SingleChildScrollView(
                                 child: Column(
                                   children: [
-
+                                    Center(
+                                        child: Padding(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          child: Image.asset("assets/image/in_progress.png", height: 70,),
+                                        )),
                                     Center(
                                         child: Padding(
                                           padding: EdgeInsets.all(10),
