@@ -252,16 +252,16 @@ class _HomeScreenState extends State<HomeScreen>
                                     Row(
                                       children: [
                                         Expanded(
-                                            child: cardWidget(10, 0,
-                                                "Total Booking", Images.ic_doc)),
+                                            child: cardWidget(6, 0,
+                                                "Total Services", Images.ic_doc)),
                                         SizedBox(
                                           width: 10,
                                         ),
                                         Expanded(
                                             child: cardWidget(
-                                                3,
+                                                5,
                                                 1,
-                                                "Today's Booking",
+                                                "Today's News",
                                                 Images.ic_today)),
                                       ],
                                     ),
@@ -281,9 +281,9 @@ class _HomeScreenState extends State<HomeScreen>
                                         ),
                                         Expanded(
                                             child: cardWidget(
+                                                20,
                                                 3,
-                                                3,
-                                                "Total Client",
+                                                "Total Users",
                                                 Images.ic_client)),
                                       ],
                                     ),

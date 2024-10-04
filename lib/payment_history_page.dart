@@ -107,7 +107,7 @@ class _ServiceListScreenState extends State<PaymentHistoryPage> {
                                       )),
                                 ),
                                 SizedBox(width: 5,),
-                                Container(
+                                purchase.paymentStatus=="Pending"? Container(
                                   height: 30,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -122,7 +122,7 @@ class _ServiceListScreenState extends State<PaymentHistoryPage> {
                                       },
                                       child:Text("Approve",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Colors.white),
                                       )),
-                                )
+                                ):Image.asset("assets/image/verified.png")
                               ],
                             )
 
