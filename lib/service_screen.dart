@@ -50,16 +50,24 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
                 Container(
                   height: 45,
                   padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF0EA800),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12), // <-- Radius
+                  child: Stack(
+                    children: [ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF0EA800),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12), // <-- Radius
+                          ),
+                          elevation: 0,
                         ),
-                        elevation: 0,
-                      ),
-                      onPressed: (){},
-                      child: Text("Add New Service",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.white),)),
+                        onPressed: (){},
+                        child: Text("Add New Service",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.white),)),
+
+                      Positioned(
+                          top: -10,
+                          right: 0,
+                          child: Image.asset("assets/image/in_progress.png",height: 30,))
+                    ]
+                  ),
                 )
 
                   ],

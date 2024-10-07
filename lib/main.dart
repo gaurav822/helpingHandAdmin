@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), (){
-      callNextScreenAndClearStack(context, LoginScreen());
+      callNextScreenAndClearStack(context, HomeScreen());
       // callNextScreenAndClearStack(context, LoginScreen());
     });
   }
