@@ -69,9 +69,7 @@ class DashboardController extends GetxController {
   Future<void> confirmPay(String purhcaseId, GlobalKey<LoaderState> loaderKey) async {
     try {
       //start loading
-      loaderKey.currentState?.showLoader();
-      print("start clicked");
-      //show spin kit here
+      loaderKey.currentState?.showLoader(); //show spin kit here
 
       await MainRepository.instance.confirmPayment(purhcaseId);
 
@@ -84,5 +82,43 @@ class DashboardController extends GetxController {
       loaderKey.currentState?.hideLoader();
     }
   }
+
+
+  Future<void> postAccomodation(String purhcaseId, GlobalKey<LoaderState> loaderKey) async {
+    try {
+      //start loading
+      loaderKey.currentState?.showLoader(); //show spin kit here
+
+      await MainRepository.instance.confirmPayment(purhcaseId);
+
+      Fluttertoast.showToast(msg: "Purchase Approved Successfully",toastLength: Toast.LENGTH_LONG);
+      getPurchases();
+      loaderKey.currentState?.hideLoader();
+
+      // Move to verify email address
+    } catch (e) {
+      loaderKey.currentState?.hideLoader();
+    }
+  }
+
+
+  Future<void> postJob(String title,String desc,String company, String location, String salary, GlobalKey<LoaderState> loaderKey) async {
+    try {
+      //start loading
+      loaderKey.currentState?.showLoader(); //show spin kit here
+
+      await MainRepository.instance.postJob(title,desc,company,location,salary);
+
+      Fluttertoast.showToast(msg: "New Job Added Successfully",toastLength: Toast.LENGTH_LONG);
+      // getPurchases();
+      loaderKey.currentState?.hideLoader();
+
+      // Move to verify email address
+    } catch (e) {
+      loaderKey.currentState?.hideLoader();
+    }
+  }
+
+
 
 }

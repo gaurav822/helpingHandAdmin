@@ -7,8 +7,12 @@ import 'package:demoapp/images.dart';
 import 'package:demoapp/login_screen.dart';
 import 'package:demoapp/my_cm.dart';
 import 'package:demoapp/responsive_helper.dart';
+import 'package:demoapp/spin_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+
+import 'controllers/dashboard_controller.dart';
 
 class JobsScreen extends StatefulWidget {
   final Function onSubmit;
@@ -91,6 +95,7 @@ class _JobsScreenState extends State<JobsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = DashboardController.instance;
     double width = MediaQuery.of(context).size.width;
     return BlocListener<BaseBloc, BaseState>(
       bloc: baseBloc,
@@ -159,6 +164,7 @@ class _JobsScreenState extends State<JobsScreen> {
                                   inputDecoration(descriptionError, "Description"),
                                   onChanged: _validateDescription,
                                 ),
+                                Loader(),
                                 SizedBox(height: 15),
                                 TextFormField(
                                   controller: _locationController,
@@ -203,8 +209,8 @@ class _JobsScreenState extends State<JobsScreen> {
 
 
 
-                                      print("Job posted successfully!");
-                                      widget.onSubmit();
+                                      // widget.onSubmit();
+                                      controller.postJob(_jobTitleController.text.trim(), _descriptionController.text.trim(),"", _locationController.text.trim(), _salaryController.text.trim(), loaderKey);
                                     }},
                                 ),
                               ],

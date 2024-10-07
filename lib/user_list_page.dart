@@ -43,29 +43,71 @@ class UsersListPage extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical, // Allow horizontal scrolling
-              child: DataTable(
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2)
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                child: DataTable(
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2)
+                  ),
+                  columns: [
+                    DataColumn(label: Container(width: width*0.13, child: Text('Sr No.', style: poppinsBold))),
+                    DataColumn(label: Container(width: width*0.13, child: Text('Student Name', style: poppinsBold))),
+                    DataColumn(label: Container(width: width*0.13, child: Text('Email', style: poppinsBold))),
+                    DataColumn(label: Container(width: width*0.13, child: Text('Phone Number', style: poppinsBold))),
+                    DataColumn(label: Container( width:width*0.13, child: Text('Account Status', style: poppinsBold))),
+                    DataColumn(label: Container(width: width * 0.13, child: Text('Action', style: poppinsBold))),
+
+                  ],
+                  rows: controller.students.asMap().entries.map((entry) {
+                    int index = entry.key + 1;  // Getting the index (starting from 1)
+                    var student = entry.value;
+                    print("Each student");
+                    return DataRow(
+                        cells: [
+                          DataCell(Text(index.toString())),
+                          DataCell(Text("${student.firstname}  ${student.lastname}")),
+                          DataCell(Text(student.email)),
+                          DataCell(Text(student.phoneNumber??"N/A")),
+                          DataCell(Text(student.isVerified?"Verified":"Unverified")),
+                          DataCell( Row(
+                            children: [
+                              Container(
+                                height: 30,
+                                child: OutlinedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12), // <-- Radius
+                                      ),
+                                      elevation: 0,
+                                    ),
+                                    onPressed: (){},
+                                    child:Text("View Details",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                                    )),
+                              ),
+                              SizedBox(width: 5,),
+                              !student.isVerified? Container(
+                                height: 30,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color(0xFF0EA800),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12), // <-- Radius
+                                      ),
+                                      elevation: 0,
+                                    ),
+                                    onPressed: (){
+                                      // controller.confirmPay(purchase.id,loaderKey);
+                                    },
+                                    child:Text("Verify",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Colors.white),
+                                    )),
+                              ):Image.asset("assets/image/verified.png")
+                            ],
+                          )
+
+                          )
+                        ]);
+                  }).toList(),
                 ),
-                columns: [
-                  DataColumn(label: Container(width: width*0.13, child: Text('Sr No.', style: poppinsBold))),
-                  DataColumn(label: Container(width: width*0.13, child: Text('Student Name', style: poppinsBold))),
-                  DataColumn(label: Container(width: width*0.13, child: Text('Email', style: poppinsBold))),
-                  DataColumn(label: Container(width: width*0.13, child: Text('Phone Number', style: poppinsBold))),
-                  DataColumn(label: Container( width:width*0.13, child: Text('Account Status', style: poppinsBold))),
-                ],
-                rows: controller.students.asMap().entries.map((entry) {
-                  int index = entry.key + 1;  // Getting the index (starting from 1)
-                  var student = entry.value;
-                  return DataRow(
-                      cells: [
-                        DataCell(Text(index.toString())),
-                        DataCell(Text("${student.firstname}  ${student.lastname}")),
-                        DataCell(Text(student.email)),
-                        DataCell(Text(student.phoneNumber??"N/A")),
-                        DataCell(Text(student.isVerified?"Verified":"Unverified")),
-                      ]);
-                }).toList(),
               ),
             ),
           ),
@@ -115,7 +157,7 @@ class UsersListPage extends StatelessWidget {
                         DataCell(Text(index.toString())),
                         DataCell(Text("${expert.firstname}  ${expert.lastname}")),
                         DataCell(Text(expert.email)),
-                        DataCell(Text(expert.phoneNumber)),
+                        DataCell(Text(expert.phoneNumber??"N/A")),
                         DataCell(Text(expert.isVerified?"Verified":"Unverified")),
                       ]);
                 }).toList(),

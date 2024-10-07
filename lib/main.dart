@@ -1,13 +1,14 @@
-import 'package:demoapp/controllers/dashboard_controller.dart';
 import 'package:demoapp/home_screen.dart';
 import 'package:demoapp/images.dart';
 import 'package:demoapp/login_screen.dart';
 import 'package:demoapp/my_cm.dart';
+import 'package:demoapp/repository/auth_repo.dart';
 import 'package:demoapp/repository/mainrepository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  Get.lazyPut(()=>AuthenticationRepository());
   Get.lazyPut(()=>MainRepository());
   runApp(MyApp());
 }
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), (){
-      callNextScreenAndClearStack(context, HomeScreen());
+      callNextScreenAndClearStack(context, LoginScreen());
       // callNextScreenAndClearStack(context, LoginScreen());
     });
   }
