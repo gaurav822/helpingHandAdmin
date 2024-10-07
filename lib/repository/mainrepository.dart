@@ -131,7 +131,6 @@ class MainRepository extends GetxController {
         throw Exception(response.statusCode);
       }
     } on http.ClientException catch (e) {
-      print(e.message);
       throw Exception(
           500); // Customize as per your error handling
     } catch (e) {
@@ -188,8 +187,8 @@ class MainRepository extends GetxController {
             'title':title,
             'description':desc,
             'company':company,
-            'location' :location,
-            'salary': int.parse(salary)
+            'location':location,
+            'salary': salary
           })
       );
 
@@ -198,11 +197,14 @@ class MainRepository extends GetxController {
         // Handle success
       } else {
         // Handle server errors
+        print("except one");
         print(response);
         throw Exception(response.statusCode);
       }
     } on http.ClientException catch (e) {
-      print(e);
+      print("except two");
+
+      print(e.message);
       throw Exception(
           500); // Customize as per your error handling
     } catch (e) {
